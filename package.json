@@ -1,0 +1,19 @@
+{
+  "name": "gulp-build",
+  "version": "1.0.0",
+  "description": "A simple application for practicing task running techniques with Gulp",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "javascript",
+    "gulp",
+    "treehouse"
+  ],
+  "author": "Dimitri Tolios",
+  "license": "ISC",
+  "devDependencies": {
+    "gulp": "^3.9.1"
+  }
+}
