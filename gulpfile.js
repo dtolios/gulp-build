@@ -9,6 +9,7 @@ const cleanCSS   = require('gulp-clean-css');
 const sourcemaps = require('gulp-sourcemaps');
 const imagemin   = require('gulp-imagemin');
 const del        = require('del');
+const connect    = require('gulp-connect');
 
 gulp.task('concatScripts', function () {
     return gulp.src('./js/**/*.js')
@@ -60,14 +61,22 @@ gulp.task('images', function () {
 });
 
 gulp.task('clean', function () {
-    del(['dist', 'js/all*.js*', 'css']);
+    del.sync(['dist', 'js/all*.js*', 'css']);
 });
 
 gulp.task('build', ['scripts', 'styles', 'images'], function () {
-    return gulp.src(['index.html'], {base: './'})
+    return gulp.src(['index.html', 'icons/**'], {base: './'})
             .pipe(gulp.dest('dist'));
 });
 
-gulp.task('default', ['clean'], function () {
-    gulp.start('build');
+gulp.task('watch', function () {
+    gulp.watch('./sass/**/*.scss', ['styles']);
+});
+
+gulp.task('connect', function () {
+    connect.server();
+});
+
+gulp.task('default', ['clean', 'build', 'watch'], function () {
+    gulp.start('connect');
 });
