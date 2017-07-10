@@ -41,8 +41,10 @@ gulp.task('compileSass', function () {
 
 gulp.task('minifyCss', ['compileSass'], function () {
     return gulp.src('./css/global.css')
-                .pipe(cleanCSS({compatibility: 'ie8'}))
+                .pipe(sourcemaps.init())
+                .pipe(cleanCSS())
                 .pipe(rename('all.min.css'))
+                .pipe(sourcemaps.write('./'))
                 .pipe(gulp.dest('./css'));
 });
 
