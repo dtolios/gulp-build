@@ -71,7 +71,7 @@ gulp.task('clean', function () {
     del.sync(['dist', 'js/all*.js*', 'css']);
 });
 
-gulp.task('build', ['scripts', 'styles', 'images'], function () {
+gulp.task('build', ['clean', 'scripts', 'styles', 'images'], function () {
     return gulp.src(['index.html', 'icons/**'], {base: './'})
             .pipe(gulp.dest('dist'));
 });
@@ -86,6 +86,6 @@ gulp.task('serve', ['styles'], function() {
     gulp.watch("./css/*.css").on('change', browserSync.reload);
 });
 
-gulp.task('default', ['clean', 'build'], function () {
+gulp.task('default', ['build'], function () {
     gulp.start('serve');
 });
